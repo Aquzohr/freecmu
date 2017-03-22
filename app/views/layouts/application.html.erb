@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FreecmuVoting</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="<%= subjects_path %>" >Free CMU Voting Application</a>
+	    </div>
+	    <div>
+	      <div class="collapse navbar-collapse " id="myNavbar">
+
+	        <ul class="nav navbar-nav navbar-right">
+	          <li><a href="<%= subjects_path %>">Vote</a></li>
+	          <li><a href="#section2">Top 10</a></li>
+	          <li><a href="<%= new_subject_path %>">New Subject</a></li>
+
+		      <% if current_user %>
+			    <li style="line-height: 50px;"><%= image_tag current_user.image_url, size: "24x24" %></li>
+			    <li><%= link_to 'Logout', sign_out_path %></li>
+			  <% else %>
+			    <li><%= link_to 'Sign in', '/auth/facebook' %></li>
+			  <% end %>
+
+	        </ul>
+
+	      </div>
+	    </div>
+	  </div>
+	</nav> 
+
+	<br><br><br>   
+
+  	<div class="container">
+  		<%= yield %>
+  	</div>
+
+
+
+  </body>
+</html>

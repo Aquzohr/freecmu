@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: pguser
+  password: pguser
+  host: localhost
+  database: freecmu
+
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   username: blhniqgohxgzfi
+#   password: _kP8fYLBjJzQLRBNflQuCbh33n
+#   host: ec2-54-83-27-147.compute-1.amazonaws.com
+#   port: 5432
+#   database: d615277ttnh1bc
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

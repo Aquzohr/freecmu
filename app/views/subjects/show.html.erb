@@ -1,0 +1,30 @@
+
+<div class="panel panel-success">
+	  <% if notice != nil %>
+      <div class="panel-heading"><%= notice %></div>
+      <% else %>
+      <div class="panel-heading">Information</div>
+      <% end %>
+      <div class="panel-body">
+
+      	<p>
+		  <strong>Sub:</strong>
+		  <%= @subject.sub_id %>
+		</p>
+
+		<p>
+		  <strong>Sub name:</strong>
+		  <%= @subject.sub_name %>
+		</p>
+
+		<p>
+		  <strong>Sub des:</strong>
+		  <%= @subject.sub_des %>
+		</p>
+
+		<%= link_to 'Edit', edit_subject_path(@subject) %> | <%= link_to 'Confirm', root_path %>
+
+      </div>
+</div>
+
+

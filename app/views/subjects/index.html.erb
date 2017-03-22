@@ -1,0 +1,72 @@
+<style>
+  /* unvisited link */
+  a:link {
+      color: white;
+  }
+
+  /* visited link */
+  a:visited {
+      color: white;
+  }
+
+  /* mouse over link */
+  a:hover {
+      color: white;
+  }
+
+  /* selected link */
+  a:active {
+      color: white;
+  }
+</style>
+
+<% if notice != nil %>
+<div class="alert alert-success"> <%= notice %> </div>
+<% end %>
+
+
+
+<br>
+
+<div class="container-fluid">
+  <div class="text-center">
+    <h2>Voting</h2>
+    <h4>Choose a subject do you like it.</h4>
+  </div>
+  <div class="row">
+
+    <% @subjects.each do |subject| %>
+
+        <div class="col-sm-4">
+          <div class="panel panel-default text-center">
+            <div class="panel-heading">
+              <h3> <%= subject.sub_name %> | <%= subject.sub_id %> </h3>
+            </div>
+
+            <div class="panel-body">
+              <%= subject.sub_des %> <hr>
+              <%= link_to 'Show', subject, class: "btn btn-primary" %> 
+              <%= link_to 'Edit', edit_subject_path(subject), class: "btn btn-warning" %> 
+              <%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+              <% if current_user %>
+
+                <% if current_user.voted?(subject) %>
+                  <%= link_to 'Voted', nil, class: "btn btn-info disabled" %>
+                <% else %>
+                  <%= link_to 'Vote', votes_path(:sub_id => subject.id), method: :post, class: "btn btn-info" %>
+                <% end %>
+                
+              <% end %>
+
+
+            </div>
+
+          </div>
+        </div> 
+
+    <% end %>
+
+  </div>
+</div>
+
