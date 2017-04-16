@@ -8,21 +8,22 @@
       <div class="panel-body">
 
       	<p>
-		  <strong>Sub:</strong>
+		  <strong>ID:</strong>
 		  <%= @subject.sub_id %>
 		</p>
 
 		<p>
-		  <strong>Sub name:</strong>
+		  <strong>Name:</strong>
 		  <%= @subject.sub_name %>
 		</p>
 
 		<p>
-		  <strong>Sub des:</strong>
+		  <strong>Description:</strong>
 		  <%= @subject.sub_des %>
 		</p>
 
-		<%= link_to 'Edit', edit_subject_path(@subject) %> | <%= link_to 'Confirm', root_path %>
+		<%= link_to 'Edit', edit_subject_path(@subject), class: "btn btn-primary" %>
+		<%= link_to 'Confirm', root_path, class: "btn btn-success", style: 'colur=black;' %>
 
       </div>
 </div>

@@ -1,31 +1,6 @@
-<style>
-  /* unvisited link */
-  a:link {
-      color: white;
-  }
-
-  /* visited link */
-  a:visited {
-      color: white;
-  }
-
-  /* mouse over link */
-  a:hover {
-      color: white;
-      background-color: transparent;
-  }
-
-  /* selected link */
-  a:active {
-      color: white;
-  }
-</style>
-
 <% if notice != nil %>
 <div class="alert alert-success"> <%= notice %> </div>
 <% end %>
-
-
 
 <br>
 
@@ -77,8 +52,8 @@
                         <h4 class="modal-title">Subject Name: <%= subject.sub_name %></h4>
                       </div>
                       <div class="modal-body">
-                        <div class="fb-comments" data-href="http://freecmu.herokuapp.com/subjects/<%= subject.id %>" data-numposts="5"></div>
-
+                        <div class="fb-comments" data-href="https://developers.facebook.com/subjects/<%= subject.id %>" data-numposts="5"></div>
+                        <p>**ถ้าไม่เห็นกล่อง Comment ลอง Refresh 1 ครั้ง</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -89,7 +64,7 @@
                 </div>
                 
               <% else %>
-                <p>Please sign in via <%= link_to 'Facebook', '/auth/facebook', style: 'color: #0080FF;}' %> to vote subject.</p>
+                <p>Please sign in via <%= link_to 'Facebook', '/auth/facebook', style: 'color: #0080FF;' %> to vote subject.</p>
               <% end %>
 
 
