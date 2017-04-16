@@ -24,9 +24,7 @@
 	      <div class="collapse navbar-collapse " id="myNavbar">
 
 	        <ul class="nav navbar-nav navbar-right">
-	          <li><a href="<%= subjects_path %>">Vote</a></li>
-	          <li><a href="#section2">Top 10</a></li>
-	          <li><a href="<%= new_subject_path %>">New Subject</a></li>
+	          <li><a href="<%= new_subject_path %>">Create New Subject</a></li>
 
 		      <% if current_user %>
 			    <li style="line-height: 50px;"><%= image_tag current_user.image_url, size: "24x24" %></li>
@@ -42,11 +40,22 @@
 	  </div>
 	</nav> 
 
-	<br><br><br>   
+	<br><br><br>  
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=233569517104162";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script> 
 
   	<div class="container">
   		<%= yield %>
   	</div>
+
+  	
 
 
 

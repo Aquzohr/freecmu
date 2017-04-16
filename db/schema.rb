@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322074410) do
+ActiveRecord::Schema.define(version: 20170416080424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,11 @@ ActiveRecord::Schema.define(version: 20170322074410) do
     t.string   "stu_name"
     t.string   "stu_id"
     t.string   "stu_fac"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "superadmin_role", default: false
+    t.boolean  "supervisor_role", default: false
+    t.boolean  "user_role",       default: true
     t.index ["uid"], name: "index_users_on_uid", using: :btree
   end
 

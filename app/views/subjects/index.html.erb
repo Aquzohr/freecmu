@@ -12,6 +12,7 @@
   /* mouse over link */
   a:hover {
       color: white;
+      background-color: transparent;
   }
 
   /* selected link */
@@ -37,26 +38,58 @@
 
     <% @subjects.each do |subject| %>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="panel panel-default text-center">
             <div class="panel-heading">
-              <h3> <%= subject.sub_name %> | <%= subject.sub_id %> </h3>
+              <h3> <%= subject.sub_name %> | <%= subject.sub_id %> | <span class="badge"><%= subject.votes_summary %></span></h3>
             </div>
 
             <div class="panel-body">
-              <%= subject.sub_des %> <hr>
-              <%= link_to 'Show', subject, class: "btn btn-primary" %> 
-              <%= link_to 'Edit', edit_subject_path(subject), class: "btn btn-warning" %> 
-              <%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+              <%= subject.sub_des %> 
+              <hr>
+
+              
 
               <% if current_user %>
+
+                <% if current_user.superadmin_role? %>
+                  <%= link_to 'Edit', edit_subject_path(subject), class: "btn btn-warning" %> 
+                  <%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                <% end %>
 
                 <% if current_user.voted?(subject) %>
                   <%= link_to 'Voted', nil, class: "btn btn-info disabled" %>
                 <% else %>
                   <%= link_to 'Vote', votes_path(:sub_id => subject.id), method: :post, class: "btn btn-info" %>
                 <% end %>
+
+                <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#<%= subject.id %>">Comments</button>
+
+                <!-- Modal -->
+                <div id="<%= subject.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Subject Name: <%= subject.sub_name %></h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="fb-comments" data-href="http://freecmu.herokuapp.com/subjects/<%= subject.id %>" data-numposts="5"></div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
                 
+              <% else %>
+                <p>Please sign in via <%= link_to 'Facebook', '/auth/facebook', style: 'color: #0080FF;}' %> to vote subject.</p>
               <% end %>
 
 
