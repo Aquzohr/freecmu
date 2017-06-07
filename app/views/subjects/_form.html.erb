@@ -1,32 +1,6 @@
-<%= form_for(subject) do |f| %>
-  <% if subject.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-
-      <ul>
-      <% subject.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :sub_id, 'ID' %>
-    <%= f.text_field :sub_id, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sub_name, 'Name' %>
-    <%= f.text_field :sub_name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sub_des, 'Description' %>
-    <%= f.text_area :sub_des, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit nil, class: "form-control" %>
-  </div>
+<%= bootstrap_form_for(subject) do |f| %>
+  <%= f.text_field :sub_id %>
+  <%= f.text_field :sub_name %>
+  <%= f.text_area :sub_des %>
+  <%= f.submit nil, class: "btn btn-primary btn-block" %>
 <% end %>

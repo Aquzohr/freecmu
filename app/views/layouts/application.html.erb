@@ -6,6 +6,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="shortcut icon" href="<%= image_path("vote-icon-9.png") %>"  />
+    
+
   </head>
 
   <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -18,20 +21,48 @@
 	          <span class="icon-bar"></span>
 	          <span class="icon-bar"></span>                        
 	      </button>
-	      <a class="navbar-brand" href="<%= subjects_path %>" >Free CMU Voting Application</a>
+	      <a class="navbar-brand navbar-padding" href="<%= root_path %>" ><i class="fa fa-cubes" aria-hidden="true"></i> Free CMU Voting Application</a>
 	    </div>
 	    <div>
 	      <div class="collapse navbar-collapse " id="myNavbar">
 
 	        <ul class="nav navbar-nav navbar-right">
-	          <li><a href="<%= new_subject_path %>">Create New Subject</a></li>
+	      
+	        <% if current_user %>
+
+	          <li>
+	          <a class="navbar-padding" href="<%= new_subject_path %>"> <i class="fa fa-plus-square" aria-hidden="true"></i>  New Subject</a>
+	          </li>
+
+	        <% end %>
 
 		      <% if current_user %>
-			    <li style="line-height: 50px;"><%= image_tag current_user.image_url, size: "24x24" %></li>
-			    <li><%= link_to 'Logout', sign_out_path %></li>
+				<li>
+				<%= link_to sign_out_path, "data-turbolinks": false do %>
+					<span><%= image_tag current_user.image_url, size: "36x36" %> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</span> 
+				<% end %>
+				</li>
+		        
+
 			  <% else %>
-			    <li><%= link_to 'Sign in', '/auth/facebook' %></li>
+			    <li>
+			    	<%= link_to '/auth/facebook', class: "navbar-padding" do %>
+			    		<span><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</span> 
+			    	<% end %> 
+			    </li>
 			  <% end %>
+
+			  <li>  
+			  	<% if I18n.locale.to_s=='th' %>
+			  		<%= link_to "?locale=en" do%>
+			  			<span><%= image_tag "http://www.iamachildofbooks.com/img/flag-uk.png", size: "36x36" %> Eng</span>
+			  		<% end %>
+			  	<% else %>
+			  		<%= link_to "?locale=th" do%>
+			  			<span><%= image_tag "https://cdn1.iconfinder.com/data/icons/rounded-flat-country-flag-collection-1/2000/th-01.png", size: "36x36" %>  Th</span>
+			  		<% end %>
+			  	<% end %>
+			  </li>
 
 	        </ul>
 

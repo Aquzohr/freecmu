@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :subjects
+
+  resources :subjects do
+    # member  subjects/:id/method
+    # collection subjects/method
+
+    post 'vote', on: :member
+  end
+
   root to: 'subjects#index'
 
   #facebook_login
@@ -9,7 +16,7 @@ Rails.application.routes.draw do
   get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
   #vote
-  resources :votes, only: [:create]
+  #resources :votes, only: [:create]
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

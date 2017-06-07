@@ -10,6 +10,8 @@ gem 'omniauth-facebook'
 gem 'cancancan'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
+gem 'font-awesome-sass', '~> 4.7.0'
+gem 'bootstrap_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

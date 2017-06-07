@@ -4,7 +4,13 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    # @subjects = Subject.all.sort { |a, b| b.votes.count <=> a.votes.count }
+    @subjects = Subject.left_outer_joins(:votes).group("subjects.id").order("count(votes.subject_id) desc")
+    
+    respond_to do |format|
+        format.html { render 'index' }
+        format.json { render @subjects }
+    end
   end
 
   # GET /subjects/1
@@ -25,6 +31,7 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
+    @subject.user_id = current_user.id
 
     respond_to do |format|
       if @subject.save
@@ -59,6 +66,12 @@ class SubjectsController < ApplicationController
       format.html { redirect_to root_path, notice: 'Subject was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    user = current_user
+    vote = Vote.where(subject_id: params[:id], user_id: user.id).first_or_create
+    redirect_to root_path
   end
 
   private

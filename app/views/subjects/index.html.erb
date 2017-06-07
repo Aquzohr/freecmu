@@ -1,5 +1,5 @@
 <% if notice != nil %>
-<div class="alert alert-success"> <%= notice %> </div>
+<div class="alert alert-success">  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <%= notice %> </div>
 <% end %>
 
 <br>
@@ -10,9 +10,11 @@
     <h4>Choose a subject do you like it.</h4>
   </div>
   <div class="row">
-
-    <% @subjects.each do |subject| %>
-
+    <div class="col-xs-12">
+    <% @subjects.each_with_index do |subject, index| %>
+    
+      <%= '<div class="row">'.html_safe if index.even? %>
+      
         <div class="col-sm-6">
           <div class="panel panel-default text-center">
             <div class="panel-heading">
@@ -28,18 +30,18 @@
 
               <% if current_user %>
 
-                <% if current_user.superadmin_role? %>
-                  <%= link_to 'Edit', edit_subject_path(subject), class: "btn btn-warning" %> 
-                  <%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                <% if current_user.owner?(subject) %>
+                  <%= link_to t('shared.edit'), edit_subject_path(subject), class: "btn btn-warning" %> 
+                  <%= link_to t('shared.destroy'), subject, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
                 <% end %>
 
                 <% if current_user.voted?(subject) %>
-                  <%= link_to 'Voted', nil, class: "btn btn-info disabled" %>
+                  <%= link_to t('shared.voted'), nil, class: "btn btn-info disabled" %>
                 <% else %>
-                  <%= link_to 'Vote', votes_path(:sub_id => subject.id), method: :post, class: "btn btn-info" %>
+                  <%= link_to t('shared.vote'), vote_subject_path(subject.id), method: :post, class: "btn btn-info", data: {confirm: "vote?" } %>
                 <% end %>
 
-                <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#<%= subject.id %>">Comments</button>
+                <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#<%= subject.id %>"><%= t('shared.comments') %></button>
 
                 <!-- Modal -->
                 <div id="<%= subject.id %>" class="modal fade" role="dialog">
@@ -72,9 +74,10 @@
 
           </div>
         </div> 
+      <%= '</div>'.html_safe if index.odd? %>
 
     <% end %>
-
+    </div>    
   </div>
 </div>
 

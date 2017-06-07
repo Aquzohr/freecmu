@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :subjects, through: :votes
+  has_many :subjects
 
 	class << self
     def from_omniauth(auth)
@@ -16,6 +17,13 @@ class User < ApplicationRecord
 
   def voted?(subject)
     votes.any? {|v| v.subject == subject}
+  end
+
+  def owner?(subject)
+    # puts id
+    # puts subject.user_id
+    # puts "=============="
+    return (id == subject.user_id)
   end
 
 end

@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      user: 
+      vote: 
+      subject: 
+    attributes:
+      subject:
+        sub_id: Subject ID
+        sub_name: Subject Name
+        sub_des: Subject Description
