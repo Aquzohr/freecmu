@@ -5,8 +5,9 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     # @subjects = Subject.all.sort { |a, b| b.votes.count <=> a.votes.count }
-    @subjects = Subject.left_outer_joins(:votes).group("subjects.id").order("count(votes.subject_id) desc")
-    
+    #@subjects = Subject.left_outer_joins(:votes).group("subjects.id").order("count(votes.subject_id) asc")
+    @subjects = Subject.left_outer_joins(:votes).group(:id).order('count(subject_id) DESC')
+
     respond_to do |format|
         format.html { render 'index' }
         format.json { render @subjects }
