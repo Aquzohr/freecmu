@@ -75,6 +75,12 @@ class SubjectsController < ApplicationController
     redirect_to root_path
   end
 
+  def unvote
+    user = current_user
+    vote = Vote.where(subject_id: params[:id], user_id: user.id).destroy_all
+    redirect_to root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subject

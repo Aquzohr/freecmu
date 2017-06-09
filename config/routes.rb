@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  resources :subjects do
-    # member  subjects/:id/method
-    # collection subjects/method
+    resources :subjects do
+      # member  subjects/:id/method
+      # collection subjects/method
 
-    post 'vote', on: :member
-  end
+      post 'vote', on: :member
+      post 'unvote', on: :member
+    end
+
 
   root to: 'subjects#index'
+
+
+  
 
   #facebook_login
   get '/auth/:provider/callback', to: 'sessions#create'

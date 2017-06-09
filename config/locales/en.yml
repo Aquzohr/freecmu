@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  shared:
+    th: ไทย
+    voting_des: Choose a subject do you like it.
+    please_sign_via: Please sign in via 
+    to_vote: to vote this subject.
+    first_create: Do you want to first create? Do it!!
   activerecord:
     models:
       user: 

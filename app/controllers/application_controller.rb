@@ -5,15 +5,20 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :set_locale
+  before_filter :set_locale
+
   def set_locale
-  	I18n.locale = params[:locale]
+    I18n.locale = params[:locale] || I18n.default_locale
   end
+
+  def default_url_options(options={})
+    { :locale => I18n.locale }
+  end 
 
   def current_user
 	  @current_user ||= User.find_by(id: cookies[:user_id]) if cookies[:user_id]
-	  @current_ability = Ability.new(@current_user)
-	  puts @current_ability
+	  #@current_ability = Ability.new(@current_user)
+	  #puts @current_ability
 
 	  @current_user
 	end

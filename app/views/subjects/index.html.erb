@@ -5,10 +5,18 @@
 <br>
 
 <div class="container-fluid">
-  <div class="text-center">
-    <h2>Voting</h2>
-    <h4>Choose a subject do you like it.</h4>
-  </div>
+
+  <% if @subjects.nil? %>
+      <div class="text-center">
+        <h2><%= t('shared.first_create') %></h2>
+      </div>
+  <% else %>
+      <div class="text-center">
+        <h2><%= t('shared.voting') %></h2>
+        <h4><%= t('shared.voting_des') %></h4>
+      </div>
+  <% end %>
+
   <div class="row">
     <div class="col-xs-12">
     <% @subjects.each_with_index do |subject, index| %>
@@ -36,9 +44,9 @@
                 <% end %>
 
                 <% if current_user.voted?(subject) %>
-                  <%= link_to t('shared.voted'), nil, class: "btn btn-info disabled" %>
+                  <%= link_to t('shared.unvote'), unvote_subject_path(subject.id), method: :post, class: "btn btn-info" %>
                 <% else %>
-                  <%= link_to t('shared.vote'), vote_subject_path(subject.id), method: :post, class: "btn btn-info", data: {confirm: "vote?" } %>
+                  <%= link_to t('shared.vote'), vote_subject_path(subject.id), method: :post, class: "btn btn-info" %>
                 <% end %>
 
                 <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#<%= subject.id %>"><%= t('shared.comments') %></button>
@@ -66,9 +74,8 @@
                 </div>
                 
               <% else %>
-                <p>Please sign in via <%= link_to 'Facebook', '/auth/facebook', style: 'color: #0080FF;' %> to vote subject.</p>
+                <p> <%= t('shared.please_sign_via') %> <%= link_to 'Facebook', '/auth/facebook', style: 'color: #0080FF;' %> <%= t('shared.to_vote') %></p>
               <% end %>
-
 
             </div>
 

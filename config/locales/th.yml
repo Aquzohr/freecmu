@@ -5,9 +5,18 @@ th:
     edit: แก้ไข
     destroy: ลบ
     vote: โหวต
-    voted: โหวตแล้ว
+    unvote: เลิกโหวต
     comments: แสดงความคิดเห็น
     confirm: ยืนยัน
+    new_subject: สร้างวิชาใหม่
+    admin: ผู้ดูแลระบบ
+    sign_in: เข้าสู่ระบบ
+    sign_out: ออกจากระบบ
+    voting: โหวตเลย!!
+    voting_des: โหวตวิชาที่คุณคิดว่ามันง่าย เลือกสิ
+    please_sign_via: กรุณรเข้าสู่ระบบผ่าน
+    to_vote: เพื่อโหวดวิชานี้
+    first_create: ยังไม่มีวิชาเลย สร้างคนแรกเลยสิ
 
   activerecord:
     models:
