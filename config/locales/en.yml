@@ -40,9 +40,9 @@ en:
     th: ไทย
   activerecord:
     models:
-      user: 
-      vote: 
-      subject: 
+      user: User
+      vote: Vote
+      subject: Subject
     attributes:
       subject:
         sub_id: Subject ID
