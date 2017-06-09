@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
 
-  <% if @subjects.nil? %>
+  <% if @subjects.blank? %>
       <div class="text-center">
         <h2><%= t('shared.first_create') %></h2>
       </div>
