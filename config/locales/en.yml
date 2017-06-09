@@ -18,7 +18,6 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   shared:
     back: Back
@@ -49,9 +48,6 @@ en:
         sub_id: Subject ID
         sub_name: Subject Name
         sub_des: Subject Description
----
-en:
-  activerecord:
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
